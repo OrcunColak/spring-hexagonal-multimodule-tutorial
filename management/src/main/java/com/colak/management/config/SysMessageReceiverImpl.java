@@ -7,7 +7,7 @@ import com.colak.sysintf.in.SysMessageReceiver;
 public class SysMessageReceiverImpl implements SysMessageReceiver {
 
     @Override
-    public void receiveHello() {
+    public void receiveHelloAck() {
 
         log.info("receiveHello");
 

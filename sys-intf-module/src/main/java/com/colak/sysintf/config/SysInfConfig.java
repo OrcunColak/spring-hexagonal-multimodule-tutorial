@@ -10,7 +10,7 @@ import com.colak.sysintf.in.SysMessageReceiver;
 public class SysInfConfig {
 
     @Bean
-    MyScheduledTask myScheduledTask(SysMessageReceiver sysMessageReceiver) {
-        return new MyScheduledTask(sysMessageReceiver);
+    HelloAckScheduledTask myScheduledTask(SysMessageReceiver sysMessageReceiver) {
+        return new HelloAckScheduledTask(sysMessageReceiver);
     }
 }
