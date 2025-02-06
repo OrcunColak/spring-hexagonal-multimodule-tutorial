@@ -2,7 +2,7 @@ package com.colak.sysintf.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
-import com.colak.sysintf.in.SysMessageReceiver;
+import com.colak.ports.in.sysintf.SysMessageReceiver;
 
 @RequiredArgsConstructor
 public class HelloAckScheduledTask {

@@ -1,4 +1,4 @@
-package com.colak.sysintf.in;
+package com.colak.ports.in.sysintf;
 
 public interface SysMessageReceiver {
 
