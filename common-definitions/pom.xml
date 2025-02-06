@@ -4,17 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.colak</groupId>
-        <artifactId>spring-hexagonal-multimodule-tutorial</artifactId>
-        <version>0.1.0</version>
-    </parent>
 
-    <artifactId>shared-kernel</artifactId>
+    <!-- This should be a pure java library -->
+
+    <groupId>com.colak</groupId>
+    <artifactId>common-definitions</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>shared-kernel</name>
-    <description>Shared kernel module</description>
+    <name>common-definitions</name>
+    <description>Common Definitons</description>
 
     <properties>
         <maven.compiler.source>23</maven.compiler.source>

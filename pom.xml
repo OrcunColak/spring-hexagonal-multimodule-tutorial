@@ -60,7 +60,8 @@
     <modules>
         <module>sys-intf-module</module>
         <module>management</module>
-        <module>shared-kernel</module>
+        <module>core-api</module>
+        <module>common-definitions</module>
     </modules>
 
 </project>
