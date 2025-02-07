@@ -62,6 +62,7 @@
         <module>management</module>
         <module>core-api</module>
         <module>common-definitions</module>
+        <module>infra-module</module>
     </modules>
 
 </project>
