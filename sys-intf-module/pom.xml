@@ -12,17 +12,9 @@
     <artifactId>sys-intf-module</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>traveller</name>
-    <description>Demo project for Spring Boot</description>
+    <name>sys-intf-module</name>
+    <description>Sys Interface Module</description>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
     <dependencies>
 

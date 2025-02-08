@@ -12,7 +12,7 @@
 
     <artifactId>management</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>itenary</name>
+    <name>management</name>
     <description>Demo project for Spring Boot</description>
 
     <build>
@@ -20,6 +20,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
             </plugin>
         </plugins>
     </build>

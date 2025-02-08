@@ -6,22 +6,20 @@
 
     <!-- This should be a pure java library -->
 
+
     <groupId>com.colak</groupId>
-    <artifactId>core-api</artifactId>
+    <artifactId>core-model</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>core-api</name>
-    <description>Core Api</description>
+    <name>common-definitions</name>
+    <description>Core Model</description>
 
     <properties>
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
         <lombok.version>1.18.36</lombok.version>
-        <mapstruct.version>1.6.3</mapstruct.version>
     </properties>
-
 
     <build>
         <plugins>
@@ -36,34 +34,10 @@
                             <artifactId>lombok</artifactId>
                             <version>${lombok.version}</version>
                         </path>
-
-
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-        </dependency>
-
-        <!-- Internal dependencies  -->
-        <dependency>
-            <groupId>com.colak</groupId>
-            <artifactId>common-definitions</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.colak</groupId>
-            <artifactId>core-model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
-
 
 </project>

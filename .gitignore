@@ -2,3 +2,11 @@
 /spring-multimodule-tutorial.iml
 /traveller/traveller.iml
 /itenary/itenary.iml
+
+common-definitions/target
+core-api/target
+core-model/target
+core-module/target
+infra-module/target
+/management/target
+sys-intf-module/target

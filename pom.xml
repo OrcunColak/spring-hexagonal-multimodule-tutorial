@@ -13,6 +13,8 @@
         <java.version>23</java.version>
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <spring.boot.version>3.4.2</spring.boot.version>
         <lombok.version>1.18.36</lombok.version>
         <mapstruct.version>1.6.3</mapstruct.version>
@@ -63,6 +65,8 @@
         <module>core-api</module>
         <module>common-definitions</module>
         <module>infra-module</module>
+        <module>core-model</module>
+        <module>core-module</module>
     </modules>
 
 </project>
