@@ -10,3 +10,4 @@ core-module/target
 infra-module/target
 /management/target
 sys-intf-module/target
+rest-module/target

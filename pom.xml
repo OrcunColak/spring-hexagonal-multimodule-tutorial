@@ -67,6 +67,7 @@
         <module>infra-module</module>
         <module>core-model</module>
         <module>core-module</module>
+        <module>rest-module</module>
     </modules>
 
 </project>
