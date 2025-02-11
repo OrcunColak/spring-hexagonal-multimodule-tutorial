@@ -11,3 +11,4 @@ infra-module/target
 /management/target
 sys-intf-module/target
 rest-module/target
+localization-module/target

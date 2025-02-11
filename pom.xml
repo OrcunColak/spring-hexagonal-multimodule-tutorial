@@ -68,6 +68,7 @@
         <module>core-model</module>
         <module>core-module</module>
         <module>rest-module</module>
+        <module>localization-module</module>
     </modules>
 
 </project>
