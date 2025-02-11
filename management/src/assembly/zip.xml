@@ -9,7 +9,7 @@
     <includeBaseDirectory>false</includeBaseDirectory>
 
     <fileSets>
-        <!-- Include the Fat jar -->
+        <!-- Copy the fat jar -->
         <fileSet>
             <directory>${project.build.directory}</directory>
             <includes>
@@ -19,11 +19,11 @@
             <outputDirectory>/</outputDirectory>
         </fileSet>
 
-        <!-- Include the config folder resources -->
+        <!--  copy yaml files to /config  folder -->
         <fileSet>
-            <directory>${project.build.directory}/config</directory>
+            <directory>src/main/resources</directory>
             <includes>
-                <include>**/*</include>
+                <include>**/*.yaml</include>
             </includes>
             <!-- Place to config folder in the zip -->
             <outputDirectory>config</outputDirectory>
