@@ -69,6 +69,7 @@
         <module>core-module</module>
         <module>rest-module</module>
         <module>localization-module</module>
+        <module>data-access</module>
     </modules>
 
 </project>
