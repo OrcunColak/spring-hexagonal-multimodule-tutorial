@@ -9,16 +9,21 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ProblemDetail handleHttpMessageNotReadableException(HttpMessageNotReadableException exception) {
 
+        // The cause could be
+        // com.fasterxml.jackson.core.JsonParseException
+        // com.fasterxml.jackson.databind.exc.InvalidFormatException
         if (exception.getCause() instanceof InvalidFormatException invalidFormatException) {
             ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
             problemDetail.setTitle("Invalid Enum or JSON format");
