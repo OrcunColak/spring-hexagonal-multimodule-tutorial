@@ -1,6 +1,5 @@
 package com.colak.exception;
 
-import com.colak.TestApplication;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
-@SpringBootTest(classes = TestApplication.class) // Use the test app
+@SpringBootTest
 @AutoConfigureMockMvc
 class GlobalExceptionHandlerTest {
 
@@ -36,10 +36,7 @@ class GlobalExceptionHandlerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/test")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(invalidJson))
-                .andDo(result -> {
-                    // Output the JSON response to the console
-                    System.out.println("Response Body: " + result.getResponse().getContentAsString());
-                })
+                .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Invalid request payload"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.detail").value("The request body contains invalid JSON"));
@@ -57,10 +54,7 @@ class GlobalExceptionHandlerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/test")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(invalidEnumJson))
-                .andDo(result -> {
-                    // Output the JSON response to the console
-                    System.out.println("Response Body: " + result.getResponse().getContentAsString());
-                })
+                .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Invalid Enum or JSON format"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.detail").value("Some fields contain invalid values"))
