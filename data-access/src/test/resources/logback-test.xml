@@ -1,0 +1,5 @@
+<configuration>
+
+    <!-- Hide warnings and debug logs from the SQL Server JDBC driver -->
+    <logger name"com.microsoft.sqlserver.jdbc" level="ERROR"/>
+</configuration>
