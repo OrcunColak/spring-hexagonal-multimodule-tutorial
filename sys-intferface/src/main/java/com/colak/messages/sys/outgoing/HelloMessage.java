@@ -1,4 +1,4 @@
-package com.colak.messages.outgoing;
+package com.colak.messages.sys.outgoing;
 
 import com.colak.messages.MessageIdEnums;
 
