@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Locale;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,34 +24,38 @@ public class LocalizationServiceImpl implements LocalizationService {
 
         String localeVariant = locale.toString();
 
-        Optional<LocalizedMessage> optionalEntity = localizationTransactionalService
+        LocalizedMessage localizedMessage = localizationTransactionalService
                 .findByMessageKeyAndLocale(messageKey, localeVariant);
 
         // If not found fallback to system locale
-        if (optionalEntity.isEmpty()) {
+        if (localizedMessage == null) {
             Locale sytemLocale = Locale.getDefault();
             localeVariant = sytemLocale.toString();
-            optionalEntity = localizationTransactionalService
+
+            localizedMessage = localizationTransactionalService
                     .findByMessageKeyAndLocale(messageKey, localeVariant);
         }
-        return formatMessage(optionalEntity, messageKey, localeVariant, arguments);
+        return formatMessage(localizedMessage, messageKey, localeVariant, arguments);
 
     }
 
     @Override
     public String localizeMessage(String messageKey, String localeVariant, Object... arguments) {
-        Optional<LocalizedMessage> optionalEntity = localizationTransactionalService
+        LocalizedMessage localizedMessage = localizationTransactionalService
                 .findByMessageKeyAndLocale(messageKey, localeVariant);
-        return formatMessage(optionalEntity, messageKey, localeVariant, arguments);
+        return formatMessage(localizedMessage, messageKey, localeVariant, arguments);
     }
 
-    private String formatMessage(Optional<LocalizedMessage> optionalEntity, String messageKey, String localeVariant, Object[] arguments) {
-        return optionalEntity
-                .map(entity -> {
-                    String messageValue = entity.getMessageValue();
-                    return MessageFormat.format(messageValue, arguments);
-                })
-                .orElseGet(() -> String.format("The value is missing for messageKey: %s localeVariant : %s parameters : %s",
-                        messageKey, localeVariant, Arrays.toString(arguments)));
+    private String formatMessage(LocalizedMessage localizedMessage,
+                                 String messageKey,
+                                 String localeVariant,
+                                 Object... arguments) {
+        if (localizedMessage == null) {
+            return String.format("The value is missing for messageKey: %s localeVariant : %s parameters : %s",
+                    messageKey, localeVariant, Arrays.toString(arguments));
+        }
+
+        String messageValue = localizedMessage.getMessageValue();
+        return MessageFormat.format(messageValue, arguments);
     }
 }
