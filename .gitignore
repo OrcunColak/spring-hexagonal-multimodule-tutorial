@@ -6,7 +6,8 @@
 /core-module/target/
 /infra-module/target/
 /management/target/
-/sys-intf-module/target/
+/sys-intferface/target/
 /rest-module/target/
 /localization-module/target/
 /data-access/target/
+/localization/target/
