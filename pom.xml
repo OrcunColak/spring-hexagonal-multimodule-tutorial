@@ -60,7 +60,7 @@
     </dependencyManagement>
 
     <modules>
-        <module>sys-intf-module</module>
+        <module>sys-intferface</module>
         <module>management</module>
         <module>core-api</module>
         <module>common-definitions</module>

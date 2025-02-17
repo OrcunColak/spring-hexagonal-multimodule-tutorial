@@ -109,7 +109,7 @@
 
         <dependency>
             <groupId>com.colak</groupId>
-            <artifactId>sys-intf-module</artifactId>
+            <artifactId>sys-intferface</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
