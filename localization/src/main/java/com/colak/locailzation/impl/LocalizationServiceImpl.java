@@ -19,43 +19,56 @@ public class LocalizationServiceImpl implements LocalizationService {
     @Override
     public String localizeMessage(String messageKey, Object... arguments) {
 
-        // Try to fetch the message
+        // Get the user's locale. This will never return null
         Locale locale = LocaleContextHolder.getLocale();
 
-        String localeVariant = locale.toString();
+        String language = toLanguageIdentifier(locale);
 
         LocalizedMessage localizedMessage = localizationTransactionalService
-                .findByMessageKeyAndLocale(messageKey, localeVariant);
+                .findByMessageKeyAndLanguage(messageKey, language);
 
         // If not found fallback to system locale
         if (localizedMessage == null) {
-            Locale sytemLocale = Locale.getDefault();
-            localeVariant = sytemLocale.toString();
 
-            localizedMessage = localizationTransactionalService
-                    .findByMessageKeyAndLocale(messageKey, localeVariant);
+            Locale sytemLocale = Locale.getDefault();
+            String systemLanguage = toLanguageIdentifier(sytemLocale);
+
+            // Optimization : If user's locale is different from system locale
+            if (!language.equals(systemLanguage)) {
+                language = systemLanguage;
+                localizedMessage = localizationTransactionalService
+                        .findByMessageKeyAndLanguage(messageKey, systemLanguage);
+            }
         }
-        return formatMessage(localizedMessage, messageKey, localeVariant, arguments);
+        return formatMessage(localizedMessage, messageKey, language, arguments);
 
     }
 
     @Override
-    public String localizeMessage(String messageKey, String localeVariant, Object... arguments) {
+    public String localizeMessage(String messageKey, String language, Object... arguments) {
         LocalizedMessage localizedMessage = localizationTransactionalService
-                .findByMessageKeyAndLocale(messageKey, localeVariant);
-        return formatMessage(localizedMessage, messageKey, localeVariant, arguments);
+                .findByMessageKeyAndLanguage(messageKey, language);
+        return formatMessage(localizedMessage, messageKey, language, arguments);
+    }
+
+    private String toLanguageIdentifier(Locale locale) {
+        return locale.getLanguage() + "_" + locale.getCountry();
     }
 
     private String formatMessage(LocalizedMessage localizedMessage,
                                  String messageKey,
-                                 String localeVariant,
+                                 String language,
                                  Object... arguments) {
         if (localizedMessage == null) {
-            return String.format("The value is missing for messageKey: %s localeVariant : %s parameters : %s",
-                    messageKey, localeVariant, Arrays.toString(arguments));
+            return String.format("The value is missing for messageKey: %s language : %s parameters : %s",
+                    messageKey, language, Arrays.toString(arguments));
         }
 
         String messageValue = localizedMessage.getMessageValue();
-        return MessageFormat.format(messageValue, arguments);
+        try {
+            return MessageFormat.format(messageValue, arguments);
+        } catch (IllegalArgumentException exception) {
+            return String.format("The messageKey: %s has illegal argument.", messageKey);
+        }
     }
 }

@@ -13,8 +13,8 @@ public class LocalizationTransactionalService {
     private final LocalizedMessageRepository repository;
 
     @Transactional(readOnly = true)
-    public LocalizedMessage findByMessageKeyAndLocale(String messageKey, String locale) {
-        return repository.findByMessageKeyAndLocale(messageKey, locale);
+    public LocalizedMessage findByMessageKeyAndLanguage(String messageKey, String language) {
+        return repository.findByMessageKeyAndLanguage(messageKey, language);
     }
 
 }

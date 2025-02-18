@@ -1,4 +1,4 @@
-package com.colak;
+package com.colak.dataaccess;
 
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;

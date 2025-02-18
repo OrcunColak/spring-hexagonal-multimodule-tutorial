@@ -19,8 +19,7 @@
     <description>data access module</description>
 
     <properties>
-        <maven.compiler.source>23</maven.compiler.source>
-        <maven.compiler.target>23</maven.compiler.target>
+        <java.version>23</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <test.containers.version>1.20.1</test.containers.version>

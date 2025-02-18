@@ -17,5 +17,5 @@ public class LocalizedMessage {
 
     private String messageValue;
 
-    private String locale;
+    private String language;
 }
