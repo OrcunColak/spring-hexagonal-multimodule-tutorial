@@ -23,6 +23,8 @@ class LocalizationServiceTest extends BaseSqlServerTest {
     @Autowired
     private LocalizedMessageRepository repository;
 
+    private final String turkishLanguage = "tr_TR";
+
     @BeforeEach
     void setUp() {
         // Save message with arguments
@@ -31,7 +33,7 @@ class LocalizationServiceTest extends BaseSqlServerTest {
             entity.setId(1L);
             entity.setLocalizationKey("color");
             entity.setLocalizedMessage("Türkçe renkler {0}");
-            entity.setLanguage("tr_TR");
+            entity.setLanguage(turkishLanguage);
             repository.saveAndFlush(entity);
         }
 
@@ -41,7 +43,7 @@ class LocalizationServiceTest extends BaseSqlServerTest {
             entity.setId(2L);
             entity.setLocalizationKey("days");
             entity.setLocalizedMessage("Türkçe günler");
-            entity.setLanguage("tr_TR");
+            entity.setLanguage(turkishLanguage);
             repository.saveAndFlush(entity);
         }
     }
@@ -55,14 +57,14 @@ class LocalizationServiceTest extends BaseSqlServerTest {
 
     @Test
     void testMessageWithArguments() {
-        String localizedMessage = localizationService.localizeMessage("color", "tr_TR", "çok kolay");
+        String localizedMessage = localizationService.localizeMessage("color", turkishLanguage, "çok kolay");
         assertThat(localizedMessage)
                 .isEqualTo("Türkçe renkler çok kolay");
     }
 
     @Test
     void testMessageWithNoArguments() {
-        String localizedMessage = localizationService.localizeMessage("days", "tr_TR", "extra arguments");
+        String localizedMessage = localizationService.localizeMessage("days", turkishLanguage, "extra arguments");
         assertThat(localizedMessage)
                 .isEqualTo("Türkçe günler");
     }
