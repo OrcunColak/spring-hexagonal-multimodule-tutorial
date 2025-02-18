@@ -1,6 +1,6 @@
 package com.colak.locailzation;
 
-import com.colak.dataaccess.i18n.LocalizedMessage;
+import com.colak.dataaccess.i18n.LocalizedMessageEntity;
 import com.colak.dataaccess.i18n.LocalizedMessageRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,40 +26,44 @@ class LocalizationServiceTest extends BaseSqlServerTest {
     @BeforeEach
     void setUp() {
         // Save message with arguments
-        LocalizedMessage localizedArgumentMessage = new LocalizedMessage();
-        localizedArgumentMessage.setId(1L);
-        localizedArgumentMessage.setMessageKey("color");
-        localizedArgumentMessage.setMessageValue("Türkçe renkler {0}");
-        localizedArgumentMessage.setLanguage("tr_TR");
-        repository.saveAndFlush(localizedArgumentMessage);
+        {
+            LocalizedMessageEntity entity = new LocalizedMessageEntity();
+            entity.setId(1L);
+            entity.setLocalizationKey("color");
+            entity.setLocalizedMessage("Türkçe renkler {0}");
+            entity.setLanguage("tr_TR");
+            repository.saveAndFlush(entity);
+        }
 
-        // Save message with no arguments
-        LocalizedMessage localizedNoArgumentMessage = new LocalizedMessage();
-        localizedNoArgumentMessage.setId(2L);
-        localizedNoArgumentMessage.setMessageKey("days");
-        localizedNoArgumentMessage.setMessageValue("Türkçe günler");
-        localizedNoArgumentMessage.setLanguage("tr_TR");
-        repository.saveAndFlush(localizedNoArgumentMessage);
+        {
+            // Save message with no arguments
+            LocalizedMessageEntity entity = new LocalizedMessageEntity();
+            entity.setId(2L);
+            entity.setLocalizationKey("days");
+            entity.setLocalizedMessage("Türkçe günler");
+            entity.setLanguage("tr_TR");
+            repository.saveAndFlush(entity);
+        }
     }
 
     @Test
     void testNonExistingMessage() {
         String localizeMessage = localizationService.localizeMessage("foo", 100);
         assertThat(localizeMessage)
-                .isEqualTo("The value is missing for messageKey: foo language : en_US parameters : [100]");
+                .isEqualTo("No value found in database for localizationKey : foo language : en_US parameters : [100]");
     }
 
     @Test
     void testMessageWithArguments() {
-        String localizeMessage = localizationService.localizeMessage("color", "tr_TR", "çok kolay");
-        assertThat(localizeMessage)
+        String localizedMessage = localizationService.localizeMessage("color", "tr_TR", "çok kolay");
+        assertThat(localizedMessage)
                 .isEqualTo("Türkçe renkler çok kolay");
     }
 
     @Test
     void testMessageWithNoArguments() {
-        String localizeMessage = localizationService.localizeMessage("days", "tr_TR", "extra arguments");
-        assertThat(localizeMessage)
+        String localizedMessage = localizationService.localizeMessage("days", "tr_TR", "extra arguments");
+        assertThat(localizedMessage)
                 .isEqualTo("Türkçe günler");
     }
 }

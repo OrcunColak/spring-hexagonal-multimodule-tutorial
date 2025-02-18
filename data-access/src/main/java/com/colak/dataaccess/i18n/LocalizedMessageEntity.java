@@ -8,14 +8,14 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class LocalizedMessage {
+public class LocalizedMessageEntity {
 
     @Id
     private Long id;
 
-    private String messageKey;
+    private String localizationKey;
 
-    private String messageValue;
+    private String localizedMessage;
 
     private String language;
 }

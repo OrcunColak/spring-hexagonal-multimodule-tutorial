@@ -11,9 +11,10 @@ import org.testcontainers.utility.DockerImageName;
 @Testcontainers
 public abstract class BaseSqlServerTest {
 
+    @SuppressWarnings("resource")
     @Container
     @ServiceConnection
-    private static final MSSQLServerContainer<?> MSSQL_SERVER_CONTAINER = new MSSQLServerContainer(
+    private static final MSSQLServerContainer<?> MSSQL_SERVER_CONTAINER = new MSSQLServerContainer<>(
             DockerImageName.parse("mcr.microsoft.com/mssql/server:2022-latest"))
             .acceptLicense();
 
