@@ -15,4 +15,20 @@
     <name>core-module</name>
     <description>Core Module</description>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>com.colak</groupId>
+            <artifactId>core-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.colak</groupId>
+            <artifactId>data-access</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+
 </project>
