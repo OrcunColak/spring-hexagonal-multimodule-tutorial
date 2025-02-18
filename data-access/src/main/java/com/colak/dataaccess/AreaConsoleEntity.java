@@ -11,7 +11,7 @@ import lombok.Setter;
 @Table(name = "AreaConsoles")
 @Getter
 @Setter
-public class AreaConsole {
+public class AreaConsoleEntity {
 
     @Id
     @Column(name = "ConsoleID")
